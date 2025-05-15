@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class SportsCar{
+class ManualCar {
 private:
     string brand;
     string model;
@@ -10,7 +10,7 @@ private:
     int currentSpeed;
     string tyre;
 public:
-    SportsCar(string b, string m){
+    ManualCar(string b, string m){
         this->brand = b;
         this->model = m;
         isEngineOn = false;
@@ -66,19 +66,25 @@ public:
             cout << brand <<" "<< model << " Engine is off. Cannot accelerate." << endl;
         }
     }
+    void accelerate(int speed) {
+        if (isEngineOn) {
+            currentSpeed += speed;
+            cout << brand <<" "<< model << " Accelerated by " << speed << " km/h. Current speed: " << currentSpeed << " km/h." << endl;
+        } else {
+            cout << brand <<" "<< model << " Engine is off. Cannot accelerate." << endl;
+        }
+    }
 };
 
 int main(){
-    SportsCar car("Ferrari", "488");
+    ManualCar car("Toyota", "Corolla");
     car.startEngine();
+    car.accelerate(30);
     car.shiftGear(2);
-    car.accelerate();
-    car.accelerate();
+    car.accelerate(20);
     car.brake();
+    car.accelerate();
+    car.changeTyre("Bridgestone");
     car.stopEngine();
-    cout<<"Current Speed: " << car.getCurrentSpeed() << " km/h." << endl;
-    cout<<"Current Tyre: " << car.getTyre() << endl;
-    car.changeTyre("MRF ");
-    delete &car;
     return 0;
 }
